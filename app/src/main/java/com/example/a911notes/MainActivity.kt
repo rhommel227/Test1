@@ -3,6 +3,7 @@ package com.example.a911notes
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.example.a911notes.util.rotate90
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -31,6 +32,31 @@ class MainActivity : AppCompatActivity() {
 
         myButton.setOnClickListener {
             imageCounter++
+            myImage.rotate90()
+
+            myCounter.text = imageCounter.toString()
+
+
+            if (imageCounter < 10){ myEnableButton.setClickable(false)}
+            else if (imageCounter >= 10){
+                myEnableButton.setClickable(true)
+                myEnableButton.isVisible = true
+            }
+
+        }
+
+
+        myEnableButton.setOnClickListener{
+            imageCounter= imageCounter - 10
+            button2.isVisible = true
+            myEnableButton.isVisible = false
+
+            myCounter.text = imageCounter.toString()
+        }
+
+        button2.setOnClickListener{
+            imageCounter = imageCounter +2
+            myImage.rotate90()
             myImage.rotate90()
 
             myCounter.text = imageCounter.toString()
