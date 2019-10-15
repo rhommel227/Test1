@@ -1,12 +1,14 @@
-package com.example.a911notes
+package com.example.a911notes.ui
 
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.ViewModelProviders
+import com.example.a911notes.R
 import com.example.a911notes.util.rotate90
+import com.example.a911notes.viewmodel.CountViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -14,9 +16,15 @@ class MainActivity : AppCompatActivity() {
     private var userName: String = ""
     private fun getStore() = getPreferences(Context.MODE_PRIVATE)
 
+    private lateinit var countViewModel: CountViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        countViewModel = ViewModelProviders.of(this).get(CountViewModel::class.java)
+        countViewModel.getUserCount( intent.extras?.get("username").toString()).observe(this,
+            androidx.lifecycle.Observer {updateCounter(it)})
 
         userName = intent.extras?.get("username").toString()
 
@@ -31,10 +39,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         myButton.setOnClickListener {
-            imageCounter++
+            countViewModel.setUserCount(intent.extras?.get("username").toString(), imageCounter + 1)
             myImage.rotate90()
 
-            myCounter.text = imageCounter.toString()
+
 
 
             if (imageCounter < 10){ myEnableButton.setClickable(false)}
@@ -61,9 +69,15 @@ class MainActivity : AppCompatActivity() {
 
             myCounter.text = imageCounter.toString()
         }
+
+
     }
 
 
+    private fun updateCounter(count: Long){
+        imageCounter = count
+        myCounter.text = imageCounter.toString()
+    }
 
     override fun onPause() {
         super.onPause()
