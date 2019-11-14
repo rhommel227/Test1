@@ -1,6 +1,7 @@
 package com.example.a911notes.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -66,8 +67,13 @@ class MainActivity : AppCompatActivity() {
             myCounter.text = imageCounter.toString()
         }
 
+        searchActivityButton.setOnClickListener {
+            startActivity((Intent(this, SearchActivity::class.java)))
+        }
+
 
     }
+
 
 
     private fun updateCounter(count: Long){ // function that updates the click counter when called
