@@ -82,9 +82,20 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="16dp"
-        android:text="Secret Search (Rest API)"
+        android:text="Rest Api"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myEnableButton" />
+
+    <Button
+        android:id="@+id/DownloadmanagerActivityBtn"
+        android:layout_width="98dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="85dp"
+        android:layout_marginRight="85dp"
+        android:layout_marginBottom="35dp"
+        android:text="Download Manager"
+        app:layout_constraintBottom_toTopOf="@+id/searchActivityButton"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

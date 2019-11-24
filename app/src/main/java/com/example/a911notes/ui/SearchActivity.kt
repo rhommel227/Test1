@@ -1,5 +1,7 @@
 package com.example.a911notes.ui
 
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -12,8 +14,12 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 import kotlinx.android.synthetic.main.activity_search.*
+import java.util.jar.Manifest
+
 
 class SearchActivity : AppCompatActivity() {
+
+
 
     private var disposable: Disposable? = null
 
@@ -24,6 +30,8 @@ class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
+
+
 
         searchButton.setOnClickListener{
             if (searchField.text.toString().isNotEmpty()) {

@@ -71,6 +71,10 @@ class MainActivity : AppCompatActivity() {
             startActivity((Intent(this, SearchActivity::class.java)))
         }
 
+        DownloadmanagerActivityBtn.setOnClickListener {
+            startActivity((Intent(this, DownloadmanagerActivity::class.java)))
+        }
+
 
     }
 
